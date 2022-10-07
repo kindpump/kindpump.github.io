@@ -38,7 +38,7 @@ class dillydblox {
     }
     
     fetchURL({url}) {
-        return toUpperCase(url).then(response => response.text())
+        alert("Hello World");
     }
     
     jsonExtract({name,data}) {
