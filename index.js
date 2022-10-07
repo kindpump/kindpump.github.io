@@ -10,11 +10,11 @@ class dillydblox {
                         {
                             "opcode": "fetchURL",
                             "blockType": "reporter",
-                            "text": "fetch data from [url]",
+                            "text": "make uppercase [url]",
                             "arguments": {
                                 "url": {
                                     "type": "string",
-                                    "defaultValue": "https://api.weather.gov/stations/KNYC/observations"
+                                    "defaultValue": "text"
                                 },
                             }
                         },
