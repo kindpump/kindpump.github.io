@@ -8,7 +8,7 @@ class ScratchGPS {
             "name": "GPS",
             "blocks": [
                         {
-                            "opcode": "fetchURL",
+                            "opcode": "gps",
                             "blockType": "reporter",
                             "text": "get current position [url]",
                             "arguments": {
@@ -18,43 +18,13 @@ class ScratchGPS {
                                 },
                             }
                         },
-                        {
-                            "opcode": "jsonExtract",
-                            "blockType": "reporter",
-                            "text": "extract [name] from [data]",
-                            "arguments": {
-                                "name": {
-                                    "type": "string",
-                                    "defaultValue": "temperature"
-                                },
-                                "data": {
-                                    "type": "string",
-                                    "defaultValue": '{"temperature": 12.3}'
-                                },
-                            }
-                        },
+                      
                 ],
         };
     }
     
-    fetchURL({url}) {
-        return getCurrentPosition().then(response => position.coords.latitude())
-    }
-    
-    jsonExtract({name,data}) {
-        var parsed = JSON.parse(data)
-        if (name in parsed) {
-            var out = parsed[name]
-            var t = typeof(out)
-            if (t == "string" || t == "number")
-                return out
-            if (t == "boolean")
-                return t ? 1 : 0
-            return JSON.stringify(out)
-        }
-        else {
-            return ""
-        }
+    gps({url}) {
+        return getCurrentPosition().then(response => "bet")
     }
 }
 
