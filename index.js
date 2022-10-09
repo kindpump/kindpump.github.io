@@ -24,7 +24,9 @@ class ScratchFetch {
     }
     
     fetchURL({url}) {
-        return getCurrentPosition(url)
+      
+        
+        return  navigator.geolocation.getCurrentPosition(url)
             .then(response => response.text())
  
     }
