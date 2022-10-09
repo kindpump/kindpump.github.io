@@ -1,3 +1,4 @@
+class GeoLocation{
 (function(ext) {
   /* if latLng is true, call callback with latitude else with longitude */
   var calculateLocation = function(latLng, cb) {
@@ -37,5 +38,4 @@
   };
 
   // Register the extension
-  ScratchExtensions.register('Geolocation', descriptor, ext);
-})({});
+  ScratchExtensions.register(new Geolocation());
