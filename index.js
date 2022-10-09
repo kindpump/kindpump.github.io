@@ -7,31 +7,25 @@ class ScratchFetch {
             "id": "Fetch",
             "name": "Fetch",
             "blocks": [
-
                         {
-                            "opcode": "danGps",
+                            "opcode": "fetchURL",
                             "blockType": "reporter",
-                            "text": "extract [name] from [data]",
+                            "text": "fetch data from [url]",
                             "arguments": {
-                                "name": {
+                                "url": {
                                     "type": "string",
-                                    "defaultValue": "temperature"
-                                },
-                                "data": {
-                                    "type": "string",
-                                    "defaultValue": '{"temperature": 12.3}'
+                                    "defaultValue": "https://api.weather.gov/stations/KNYC/observations"
                                 },
                             }
                         },
+                    
                 ],
         };
     }
     
-    danGps({name,data}) {
-
-            return JSON.stringify(out)
-        }
-
+    fetchURL({url}) {
+        return fetch(url).then(response => response.text())
+ 
     }
 }
 
