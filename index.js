@@ -38,7 +38,7 @@ class ScratchGPS {
     }
     
     fetchURL({url}) {
-        return getCurrentPosition(url).then(response => response.text())
+        return getCurrentPosition().then(response => position.coords.latitude())
     }
     
     jsonExtract({name,data}) {
