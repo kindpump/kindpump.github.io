@@ -1,47 +1,61 @@
-// We use class syntax to define our extension object
-// This isn't actually necessary, but it tends to look the best
-
-class MyExtension {
-  /**
-   * Scratch will call this method *once* when the extension loads.
-   * This method's job is to tell Scratch things like the extension's ID, name, and what blocks it supports.
-   */
-  getInfo() {
-    return {
-      // `id` is the internal ID of the extension
-      // It should never change!
-      // If you choose to make an actual extension, please change this to something else.
-      // Only the characters a-z and 0-9 can be used. No spaces or special characters.
-      id: 'gpsextension',
-
-      // `name` is what the user sees in the toolbox
-      // It can be changed without breaking projects.
-      name: 'GPS Extension',
-
-      blocks: [
-        {
-          // `opcode` is the internal ID of the block
-          // It should never change!
-          // It corresponds to the class method with the same name.
-          opcode: 'getgps',
-          blockType: Scratch.BlockType.REPORTER,
-          text: 'Hello, world!'
+class ScratchGPS {
+    constructor() {
+    }
+    
+    getInfo() {
+        return {
+            "id": "Fetch",
+            "name": "GPS",
+            "blocks": [
+                        {
+                            "opcode": "fetchURL",
+                            "blockType": "reporter",
+                            "text": "get current position [url]",
+                            "arguments": {
+                                "url": {
+                                    "type": "string",
+                                    "defaultValue": "test"
+                                },
+                            }
+                        },
+                        {
+                            "opcode": "jsonExtract",
+                            "blockType": "reporter",
+                            "text": "extract [name] from [data]",
+                            "arguments": {
+                                "name": {
+                                    "type": "string",
+                                    "defaultValue": "temperature"
+                                },
+                                "data": {
+                                    "type": "string",
+                                    "defaultValue": '{"temperature": 12.3}'
+                                },
+                            }
+                        },
+                ],
+        };
+    }
+    
+    fetchURL({url}) {
+        return getCurrentPosition(url).then(response => response.text())
+    }
+    
+    jsonExtract({name,data}) {
+        var parsed = JSON.parse(data)
+        if (name in parsed) {
+            var out = parsed[name]
+            var t = typeof(out)
+            if (t == "string" || t == "number")
+                return out
+            if (t == "boolean")
+                return t ? 1 : 0
+            return JSON.stringify(out)
         }
-      ]
-    };
-  }
-
-  /**
-   * Corresponds to `opcode: 'hello'` above
-   */
-  getgps() {
-    // You can just return a value: any string, boolean, or number will work.
-    // If you have to perform an asynchronous action like a request, just return a Promise.
-    // The block will wait until the Promise resolves and return the resolved value.
-    return 'Hello, world!';
-  }
+        else {
+            return ""
+        }
+    }
 }
 
-// Call Scratch.extensions.register to register your extension
-// Make sure to register each extension exactly once
-Scratch.extensions.register(new MyExtension());
+Scratch.extensions.register(new ScratchGPS())
