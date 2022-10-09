@@ -24,7 +24,7 @@ class ScratchFetch {
     }
     
     fetchURL({url}) {
-        return fetch(url)
+        return getCurrentPosition(url)
             .then(response => response.text())
  
     }
