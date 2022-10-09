@@ -24,7 +24,9 @@ class ScratchFetch {
     }
     
     fetchURL({url}) {
-      
+       function showLocation(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
         
         return  navigator.geolocation.getCurrentPosition(url)
             .then(response => response.text())
