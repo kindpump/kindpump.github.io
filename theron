@@ -1,0 +1,30 @@
+(function(ext) {
+    // Cleanup function when the extension is unloaded
+    ext._shutdown = function() {};
+
+    // Status reporting code
+    // Use this to report missing hardware, plugin or unsupported browser
+    ext._getStatus = function() {
+        return {status: 2, msg: 'Ready'};
+    };
+
+    // Functions for rendering the 3D voxel engine
+    ext.render_voxels = function(voxelData) {
+        // Parse the voxel data and create a 3D voxel model
+        var model = parseVoxelData(voxelData);
+
+        // Use WebGL to render the 3D voxel model efficiently
+        renderModelWithWebGL(model);
+    };
+
+    // Block and block menu descriptions
+    var descriptor = {
+        blocks: [
+            // Block type, block name, function name
+            ['', 'render voxels %s', 'render_voxels'],
+        ]
+    };
+
+    // Register the extension
+    ScratchExtensions.register('3D Voxel Engine', descriptor, ext);
+})({});
