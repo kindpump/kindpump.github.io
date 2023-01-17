@@ -1,61 +1,43 @@
-class ScratchFetch {
+class Scratch3D {
     constructor() {
     }
-    
+
     getInfo() {
         return {
-            "id": "Fetch",
-            "name": "Fetch",
+            "id": "3D",
+            "name": "3D",
             "blocks": [
                         {
-                            "opcode": "fetchURL",
+                            "opcode": "render3D",
                             "blockType": "reporter",
-                            "text": "fetch data from [url]",
+                            "text": "render 3D point x: [x] y: [y] z: [z] with camera at [camera]",
                             "arguments": {
-                                "url": {
-                                    "type": "string",
-                                    "defaultValue": "https://api.weather.gov/stations/KNYC/observations"
+                                "x": {
+                                    "type": "number",
+                                    "defaultValue": 0
                                 },
-                            }
-                        },
-                        {
-                            "opcode": "jsonExtract",
-                            "blockType": "reporter",
-                            "text": "extract [name] from [data]",
-                            "arguments": {
-                                "name": {
-                                    "type": "string",
-                                    "defaultValue": "temperature"
+                                "y": {
+                                    "type": "number",
+                                    "defaultValue": 0
                                 },
-                                "data": {
-                                    "type": "string",
-                                    "defaultValue": '{"temperature": 12.3}'
+                                "z": {
+                                    "type": "number",
+                                    "defaultValue": 0
                                 },
-                            }
-                        },
-                ],
-        };
-    }
-    
-    fetchURL({url}) {
-        return fetch(url).then(response => response.text())
-    }
-    
-    jsonExtract({name,data}) {
-        var parsed = JSON.parse(data)
-        if (name in parsed) {
-            var out = parsed[name]
-            var t = typeof(out)
-            if (t == "string" || t == "number")
-                return out
-            if (t == "boolean")
-                return t ? 1 : 0
-            return JSON.stringify(out)
-        }
-        else {
-            return ""
-        }
-    }
+                                "camera" : {
+                                "type": "string",
+                                "defaultValue": "origin"
+},
 }
+},
+],
+};
+}
+    render3D({x, y, z, camera}) {
+    // Logic to convert 3D point to 2D point based on camera location
+    // ...
+    return `(${x}, ${y})`;
+}
+    }
 
-Scratch.extensions.register(new ScratchFetch())
+Scratch.extensions.register(new Scratch3D());
