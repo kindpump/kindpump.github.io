@@ -27,18 +27,18 @@ class ScratchGeoLocation {
     }
 
     getCoordinates({CITY, STATE}) {
-        const url = `https://geocode.xyz/${CITY},${STATE}?json=1`;
+        const url = `https://nominatim.openstreetmap.org/search/${CITY},${STATE}?format=json`;
         return fetch(url)
             .then(response => response.json())
             .then(data => {
-                if (data.matches) {
+                if (data.length) {
                     const coordinates = {
-                        latitude: data.latt,
-                        longitude: data.longt
+                        latitude: data[0].lat,
+                        longitude: data[0].lon
                     }
                     return coordinates;
                 } else {
-                    throw new Error(data.reason);
+                    throw new Error("No data found");
                 }
             })
             .catch(error => {
