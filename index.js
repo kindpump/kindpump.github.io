@@ -1,43 +1,37 @@
-class Scratch3D {
+class ScratchSnapchat {
     constructor() {
     }
 
     getInfo() {
         return {
-            "id": "3D",
-            "name": "3D",
+            "id": "Snapchat",
+            "name": "Snapchat",
             "blocks": [
                         {
-                            "opcode": "render3D",
-                            "blockType": "reporter",
-                            "text": "render 3D point x: [x] y: [y] z: [z] with camera at [camera]",
+                            "opcode": "sendSnap",
+                            "blockType": "command",
+                            "text": "send snap to [username] with [media]",
                             "arguments": {
-                                "x": {
-                                    "type": "number",
-                                    "defaultValue": 0
+                                "username": {
+                                    "type": "string",
+                                    "defaultValue": ""
                                 },
-                                "y": {
-                                    "type": "number",
-                                    "defaultValue": 0
-                                },
-                                "z": {
-                                    "type": "number",
-                                    "defaultValue": 0
-                                },
-                                "camera" : {
-                                "type": "string",
-                                "defaultValue": "origin"
-},
-}
-},
-],
-};
-}
-    render3D({x, y, z, camera}) {
-    // Logic to convert 3D point to 2D point based on camera location
-    // ...
-    return `(${x}, ${y})`;
-}
+                                "media": {
+                                    "type": "string",
+                                    "defaultValue": ""
+                                }
+                            }
+                        },
+                ],
+        };
     }
 
-Scratch.extensions.register(new Scratch3D());
+    sendSnap({username, media}) {
+        // Logic to send snap to specified username with the specified media
+        // ...
+        // requires an access token to be passed in the request headers
+        // and the correct endpoint to be used for sending snaps
+    }
+}
+
+Scratch.extensions.register(new ScratchSnapchat());
