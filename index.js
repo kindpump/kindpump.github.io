@@ -1,22 +1,18 @@
-class ScratchSnapchat {
+class ScratchChatbot {
     constructor() {
     }
 
     getInfo() {
         return {
-            "id": "Snapchat",
-            "name": "Snapchat",
+            "id": "Chatbot",
+            "name": "Chatbot",
             "blocks": [
                         {
-                            "opcode": "sendSnap",
-                            "blockType": "command",
-                            "text": "send snap to [username] with [media]",
+                            "opcode": "getResponse",
+                            "blockType": "reporter",
+                            "text": "chatbot says [message]",
                             "arguments": {
-                                "username": {
-                                    "type": "string",
-                                    "defaultValue": ""
-                                },
-                                "media": {
+                                "message": {
                                     "type": "string",
                                     "defaultValue": ""
                                 }
@@ -26,12 +22,21 @@ class ScratchSnapchat {
         };
     }
 
-    sendSnap({username, media}) {
-        // Logic to send snap to specified username with the specified media
-        // ...
-        // requires an access token to be passed in the request headers
-        // and the correct endpoint to be used for sending snaps
+    getResponse({message}) {
+        // Logic to send message to chatbot API and receive the chatbot's response
+        return fetch('https://your-chatbot-api.com/message', {
+          method: 'POST',
+          body: JSON.stringify({message: message}),
+          headers: { 'Content-Type': 'application/json' },
+        })
+        .then(res => res.json())
+        .then(response => {
+           return response.chatbot_response;
+        })
+        .catch(error => {
+           return error;
+        });
     }
 }
 
-Scratch.extensions.register(new ScratchSnapchat());
+Scratch.extensions.register(new ScratchChatbot());
