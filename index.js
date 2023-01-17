@@ -10,31 +10,40 @@ class ScratchGeoLocation {
                         {
                             "opcode": "getCoordinates",
                             "blockType": "reporter",
-                            "text": "My Coordinates",
+                            "text": "Coordinates of [CITY] , [STATE]",
+                            "arguments": {
+                                "CITY": {
+                                    "type": "string",
+                                    "defaultValue": ""
+                                },
+                                "STATE": {
+                                    "type": "string",
+                                    "defaultValue": ""
+                                }
+                            }
                         },
                 ],
         };
     }
 
-    getCoordinates() {
-        return new Promise((resolve, reject) => {
-            navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
-                if(permissionStatus.state === 'granted'){
-                    navigator.geolocation.getCurrentPosition(
-                        position => {
-                            const coordinates = {
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude
-                            }
-                            resolve(coordinates);
-                        },
-                        error => reject(error)
-                    );
+    getCoordinates({CITY, STATE}) {
+        const url = `https://geocode.xyz/${CITY},${STATE}?json=1`;
+        return fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.matches) {
+                    const coordinates = {
+                        latitude: data.latt,
+                        longitude: data.longt
+                    }
+                    return coordinates;
                 } else {
-                    reject("Permission Denied: Access to location is denied");
+                    throw new Error(data.reason);
                 }
+            })
+            .catch(error => {
+                return error;
             });
-        });
     }
 }
 
