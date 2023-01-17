@@ -18,16 +18,22 @@ class ScratchGeoLocation {
 
     getCoordinates() {
         return new Promise((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(
-                position => {
-                    const coordinates = {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude
-                    }
-                    resolve(coordinates);
-                },
-                error => reject(error)
-            );
+            navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
+                if(permissionStatus.state === 'granted'){
+                    navigator.geolocation.getCurrentPosition(
+                        position => {
+                            const coordinates = {
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude
+                            }
+                            resolve(coordinates);
+                        },
+                        error => reject(error)
+                    );
+                } else {
+                    reject("Permission Denied: Access to location is denied");
+                }
+            });
         });
     }
 }
