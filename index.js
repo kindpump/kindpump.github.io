@@ -1,45 +1,83 @@
-class Scratch3Speech2Scratch {
-    constructor (runtime) {
-        this.runtime = runtime;
-        this.speech = '';
+class ScratchSimpleGamepad {
+    constructor(runtime) {
+        this.runtime = runtime
+        this.currentMSecs = -1
+        this.previousButtons = []
+        this.currentButtons = []
     }
-
-    getInfo () {
+    
+    getInfo() {
         return {
-            id: "speech2scratch",
-            name: "Speech2Scratch",
-            blocks: [{
-                    "opcode": "startRecognition",
-                    blockType: BlockType.COMMAND,
-                    text: "Start Recognition"
-                },
-                {
-                    "eventType": {
-                    "type": BlockType.REPORTER,
-                    "text": 'Get Speech'
-                }
+            "id": "SimpleGamepad",
+            "name": "SimpleGamepad",
+            "blocks": [{
+                        "opcode": "buttonPressedReleased",
+                        "blockType": "hat",
+                        "text": "button [b] [eventType]",
+                        "arguments": {
+                            "b": {
+                                "type": "number",
+                                "defaultValue": "0"
+                            },
+                            "eventType": {
+                                "type": "number",
+                                "defaultValue": "1",
+                                "menu": "pressReleaseMenu"
+                            },
+                        },
+                    },
             ],
             "menus": {
-            }
+                "pressReleaseMenu": [{text:"press",value:1}, {text:"release",value:0}],
+            }            
         };
     }
-
-    startRecognition () {
-        SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
-        const recognition = new SpeechRecognition();
-        recognition.onresult = (event) => {
-            this.speech = event.results[0][0].transcript;
+    
+    update() {
+        if (this.runtime.currentMSecs == this.currentMSecs) 
+            return // not a new polling cycle
+        this.currentMSecs = this.runtime.currentMSecs
+        var gamepads = navigator.getGamepads()
+        if (gamepads == null || gamepads.length == 0 || gamepads[0] == null) {
+            // different number of buttons, so new gamepad
+            this.previousButtons = []
+            this.currentButtons = []
+            return
         }
-        recognition.start();
+        var gamepad = gamepads[0]
+        if (gamepad.buttons.length != this.previousButtons.length) {
+            this.previousButtons = []
+            for (var i = 0; i < gamepad.buttons.length; i++) 
+                this.previousButtons.push(false)
+        }
+        else {
+            this.previousButtons = this.currentButtons
+        }
+        this.currentButtons = []
+        for (var i = 0; i < gamepad.buttons.length; i++) 
+            this.currentButtons.push(gamepad.buttons[i].pressed)
     }
-
-    getSpeech() {
-        return this.speech;
+    
+    buttonPressedReleased({b,eventType}) {
+        this.update()
+        if (b < this.currentButtons.length) {
+            if (eventType == 1) { // note: this will be a string, so better to compare it to 1 than to treat it as a Boolean
+                if (this.currentButtons[b] && ! this.previousButtons[b]) {
+                    return true
+                }
+            }
+            else {
+                if (!this.currentButtons[b] && this.previousButtons[b]) {
+                    return true
+                }
+             }
+        }
+        return false
     }
 }
 
 (function() {
-    var extensionInstance = new Scratch3Speech2Scratch(window.vm.extensionManager.runtime)
+    var extensionInstance = new ScratchSimpleGamepad(window.vm.extensionManager.runtime)
     var serviceName = window.vm.extensionManager._registerInternalExtension(extensionInstance)
     window.vm.extensionManager._loadedExtensions.set(extensionInstance.getInfo().id, serviceName)
 })()
