@@ -1,7 +1,3 @@
-const ArgumentType = require('../../extension-support/argument-type');
-const BlockType = require('../../extension-support/block-type');
-const Cast = require('../../util/cast');
-
 class Scratch3Speech2Scratch {
     constructor (runtime) {
         this.runtime = runtime;
@@ -10,21 +6,20 @@ class Scratch3Speech2Scratch {
 
     getInfo () {
         return {
-            id: 'speech2scratch',
-            name: 'Speech2Scratch',
-            blocks: [
-                {
-                    opcode: 'startRecognition',
+            id: "speech2scratch",
+            name: "Speech2Scratch",
+            blocks: [{
+                    "opcode": "startRecognition",
                     blockType: BlockType.COMMAND,
-                    text: 'Start Recognition'
+                    text: "Start Recognition"
                 },
                 {
-                    opcode: 'getSpeech',
-                    blockType: BlockType.REPORTER,
-                    text: 'Get Speech'
+                    "eventType": {
+                    "type": BlockType.REPORTER,
+                    "text": 'Get Speech'
                 }
             ],
-            menus: {
+            "menus": {
             }
         };
     }
