@@ -1,6 +1,6 @@
 class GPT {
   constructor() {
-    this.apiKey = ""; // Set the API key to an empty string by default
+    this.apiKey = "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"; // Set the API key to an empty string by default
   }
 
   getInfo() {
