@@ -1,6 +1,6 @@
 class GPT {
   constructor() {
-    this.apiKey = "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"; // Set the API key to an empty string by default
+    this.apiKey = ""; // Set the API key to an empty string by default
   }
 
   getInfo() {
@@ -37,11 +37,15 @@ class GPT {
         {
           "opcode": "getChatResponse",
           "blockType": "reporter",
-          "text": "get GPT chat response for [prompt]",
+          "text": "get GPT chat response for [prompt] with API key [apiKey]",
           "arguments": {
             "prompt": {
               "type": "string",
               "defaultValue": "Hello, GPT!"
+            },
+            "apiKey": {
+              "type": "string",
+              "defaultValue": "",
             },
           }
         },
@@ -53,7 +57,10 @@ class GPT {
     this.apiKey = apiKey;
   }
 
-  async getChatResponse({prompt}) {
+  async getChatResponse({prompt, apiKey}) {
+    if (apiKey) {
+      this.apiKey = apiKey;
+    }
     try {
       const response = await fetch(`https://api.openai.com/v1/engines/davinci-codex/completions`, {
         method: 'POST',
