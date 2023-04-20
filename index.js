@@ -57,7 +57,7 @@ class GPT {
     this.apiKey = apiKey;
   }
 
-  async getChatResponse({prompt, apiKey}) {
+  async getChatResponse({ prompt, apiKey }) {
     if (apiKey) {
       this.apiKey = apiKey;
     }
@@ -83,11 +83,11 @@ class GPT {
     }
   }
 
-  fetchURL({url}) {
+  fetchURL({ url }) {
     return fetch(url).then(response => response.text())
   }
 
-  jsonExtract({name, data}) {
+  jsonExtract({ name, data }) {
     try {
       var parsed = JSON.parse(data)
       if (name in parsed) {
