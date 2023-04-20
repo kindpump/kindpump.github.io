@@ -46,7 +46,7 @@ class ScratchFetch {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${key}.then(response => response.text())
+          'Authorization': `Bearer {key}.then(response => response.text())
     }
     
     jsonExtract({name,data}) {
