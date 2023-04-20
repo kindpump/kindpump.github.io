@@ -1,59 +1,61 @@
-class GPTExtension {
-  constructor(runtime) {
-    this.runtime = runtime;
-    this.text = '';
-    this.apiKey = '';
-  }
-
-  getInfo() {
-    return {
-      id: 'gpt',
-      name: 'GPT-3 Text Completion',
-      blocks: [
-        {
-          opcode: 'completeText',
-          blockType: Scratch.BlockType.COMMAND,
-          text: 'complete [TEXT] using GPT-3 with API key [APIKEY]',
-          arguments: {
-            TEXT: {
-              type: Scratch.ArgumentType.STRING,
-              defaultValue: 'The quick brown fox'
-            },
-            APIKEY: {
-              type: Scratch.ArgumentType.STRING,
-              defaultValue: 'YOUR_API_KEY_HERE'
-            }
-          }
+class ScratchFetch {
+    constructor() {
+    }
+    
+    getInfo() {
+        return {
+            "id": "Fetch",
+            "name": "Fetch",
+            "blocks": [
+                        {
+                            "opcode": "fetchURL",
+                            "blockType": "reporter",
+                            "text": "fetch data from [url]",
+                            "arguments": {
+                                "url": {
+                                    "type": "string",
+                                    "defaultValue": "https://api.weather.gov/stations/KNYC/observations"
+                                },
+                            }
+                        },
+                        {
+                            "opcode": "jsonExtract",
+                            "blockType": "reporter",
+                            "text": "extract [name] from [data]",
+                            "arguments": {
+                                "name": {
+                                    "type": "string",
+                                    "defaultValue": "temperature"
+                                },
+                                "data": {
+                                    "type": "string",
+                                    "defaultValue": '{"temperature": 12.3}'
+                                },
+                            }
+                        },
+                ],
+        };
+    }
+    
+    fetchURL({url}) {
+        return fetch(url).then(response => response.text())
+    }
+    
+    jsonExtract({name,data}) {
+        var parsed = JSON.parse(data)
+        if (name in parsed) {
+            var out = parsed[name]
+            var t = typeof(out)
+            if (t == "string" || t == "number")
+                return out
+            if (t == "boolean")
+                return t ? 1 : 0
+            return JSON.stringify(out)
         }
-      ]
-    };
-  }
-
-  completeText(args) {
-    const prompt = args.TEXT;
-    const maxTokens = 50;
-    const apiEndpoint = 'https://api.openai.com/v1/engines/davinci-codex/completions';
-    const apiKey = args.APIKEY;
-
-    fetch(apiEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        prompt,
-        max_tokens: maxTokens
-      })
-    })
-    .then(response => response.json())
-    .then(data => {
-      const completedText = data.choices[0].text;
-      const target = this.runtime.getEditingTarget();
-      target.setVariable('completedText', completedText);
-    })
-    .catch(error => console.error(error));
-  }
+        else {
+            return ""
+        }
+    }
 }
 
-Scratch.extensions.register(new GPTExtension());
+Scratch.extensions.register(new ScratchFetch())
