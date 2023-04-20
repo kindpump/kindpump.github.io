@@ -54,21 +54,26 @@ class GPT {
   }
 
   async getChatResponse({prompt}) {
-    const response = await fetch(`https://api.openai.com/v1/engines/davinci-codex/completions`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.apiKey}`,
-      },
-      body: JSON.stringify({
-        "prompt": `${prompt}`,
-        "max_tokens": 50,
-        "n": 1,
-        "stop": "\n"
-      })
-    });
-    const data = await response.json();
-    return data.choices[0].text.trim();
+    try {
+      const response = await fetch(`https://api.openai.com/v1/engines/davinci-codex/completions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.apiKey}`,
+        },
+        body: JSON.stringify({
+          "prompt": `${prompt}`,
+          "max_tokens": 50,
+          "n": 1,
+          "stop": "\n"
+        })
+      });
+      const data = await response.json();
+      return data.choices[0].text.trim();
+    } catch (error) {
+      console.error(error);
+      return "";
+    }
   }
 
   fetchURL({url}) {
@@ -76,18 +81,23 @@ class GPT {
   }
 
   jsonExtract({name, data}) {
-    var parsed = JSON.parse(data)
-    if (name in parsed) {
-      var out = parsed[name]
-      var t = typeof(out)
-      if (t == "string" || t == "number")
-        return out
-      if (t == "boolean")
-        return t ? 1 : 0
-      return JSON.stringify(out)
-    }
-    else {
-      return ""
+    try {
+      var parsed = JSON.parse(data)
+      if (name in parsed) {
+        var out = parsed[name]
+        var t = typeof(out)
+        if (t == "string" || t == "number")
+          return out
+        if (t == "boolean")
+          return t ? 1 : 0
+        return JSON.stringify(out)
+      }
+      else {
+        return ""
+      }
+    } catch (error) {
+      console.error(error);
+      return "";
     }
   }
 }
