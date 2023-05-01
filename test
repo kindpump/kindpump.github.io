@@ -1,28 +1,19 @@
 class Prism {
-    constructor(runtime) {
-        /**
-         * The runtime instantiating this block package.
-         * @type {Runtime}
-         */
-        this.runtime = runtime;
-        this.audioPlayer = new Audio();
-        this.isJSPermissionGranted = false;
-        this.isCameraScreenshotEnabled = false;
+     getInfo() {
+    return {
+      id: 'helloworld',
+      name: 'It works!',
+      blocks: [
+        {
+          opcode: 'hello',
+          blockType: Scratch.BlockType.REPORTER,
+          text: 'Hello!'
+        }
+      ]
+    };
+  }
 
-        this.mouseScrollDelta = { x: 0, y: 0, z: 0 };
-        addEventListener("wheel", e => {
-            this.mouseScrollDelta.x = e.deltaX;
-            this.mouseScrollDelta.y = e.deltaY;
-            this.mouseScrollDelta.z = e.deltaZ;
-        });
-        setInterval(() => {
-            this.mouseScrollDelta = { x: 0, y: 0, z: 0 };
-        }, 65);
-
-        this.encodeCharacterLength = 6;
-    }
-
-    screenshotStage() {
+  hello() {
         // should we look for an external canvas
         if (this.runtime.prism_screenshot_checkForExternalCanvas) {
             // if so, does one exist (this will check for more than 1 in the future)
