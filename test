@@ -1,4 +1,4 @@
-class JgPrismBlocks {
+class Prism {
     constructor(runtime) {
         /**
          * The runtime instantiating this block package.
@@ -37,4 +37,9 @@ class JgPrismBlocks {
             // user's camera is on, ask for permission to take a picture of them
             if (!(this.isCameraScreenshotEnabled)) {
                 this.isCameraScreenshotEnabled = ProjectPermissionManager.RequestPermission("cameraPictures");
-                if (!this.isCameraScreenshotEnabled) return "data:image/png;base64,iVBORw0KGgo
+                if (!this.isCameraScreenshotEnabled) return "data:image/png;base64,
+                
+               
+               
+              
+ Scratch.extensions.register(new HelloWorld());
