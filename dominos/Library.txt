@@ -1,0 +1,162 @@
+Meatzza=
+10"}12"}14"}16"}
+Pizza Sauce}3.0}4.2}6.0}8.0}
+Pizza Cheese}3.5}5.0}7.0}9.0}
+Pepperoni }12}18}24}38}
+Ham}12}18}24}38}
+Sausage}1.0}1.5}2.0}2.5}
+Beef}1.0}1.5}2.0}2.5}
+Extra Cheese}1.7}2.5}3.5}4.5}
+
+Wisconsin 6 Cheese=
+10"}12"}14"}16"}
+Pizza Sauce}3.0}4.2}6.0}8.0}
+Pizza Cheese}1.5}2.5}3.5}4.5}
+Feta}1.0}1.5}2.5}2.5}
+Provolone}1.0}2.0}2.5}3.5}
+Cheddar Blend=
+Parm/Asiago}1.0}1.5}2.0}2.5}
+Oregano}0.01}0.02}0.03}0.04}
+
+BBQ Chicken=
+10"}12"}14"}16"}
+BBQ Sauce}1.5}2.5}3.5}4.5}
+Pizza Cheese=
+Chicken}2.0}3.0}4.0}5.0}
+Onion}1.0}1.5}2.0}2.5}
+Provolone}2.5}3.5}4.7}6.0}
+Cheddar Blend}1.0}2.0}2.5}3.5}
+
+Hawaiian=
+10"}12"}14"}16"}
+Pizza Sauce }3.0}4.2}6.0}8.0}
+Pizza Cheese}1.5}2.5}3.5}4.5}
+Ham}12}18}24}38}
+Bacon}1.0}1.5}2.0}2.5}
+Pineapple=
+Green peppers}0.5}1.0}1.5}2.0}
+Provolone}2.5}3.5}4.7}6.0}
+
+Buffalo Chicken=
+10"}12"}14"}16"}
+American Cheese}4}6}7}9}
+Chicken}2.0}3.0}4.0}5.0}
+Onion}1.0}1.5}2.0}2.5}
+Provolone}2.5}3.5}4.7}6.0}
+Cheddar Blend}1.0}2.0}2.5}3.5}
+
+Cali Chicken Bacon Ranch =
+10"}12"}14"}16"}
+Ranch}1.5}3.0}4.0}5.0}
+Pizza Cheese}1.2}2.5}3.5}4.5}
+Chicken}2.0}3.0}4.0}5.0}
+Bacon}1.5}2.0}2.5}3.0}
+Provolone}2.5}3.5}4.7}6.0}
+Tomato}1.5}2.5}3.5}4.5}
+
+Spinach & Feta=
+10"}12"}14"}16"}
+Pizza Cheese}1.5}2.5}3.5}4.5}
+Spinach}1.0}1.0}1.5}2.0}
+Feta}1.0}1.5}2.0}2.5}
+Onion}0.5}1.0}1.5}2.0}
+Provolone}2.5}3.5}4.7}6.0}
+Parm/Asiago}0.5}0.7}1.0}1.2}
+Alfredo Sauce }0.7}1.5}2.0}2.5}
+
+Ultimate Pepperoni=
+10"}12"}14"}16"}
+Pizza Sauce }3.0}4.2}6.0}8.0}
+Pizza Cheese }1.5}2.5}3.5}4.5}
+Pepperoni}16}24}32}46}
+Provolone}2.5}3.5}4.7}6.0}
+Pepperoni}16}24}32}46}
+Parm/Asiago}0.5}0.7}1.0}1.2}
+Oregano}0.01}0.02}0.03}0.04}
+
+Deluxe=
+10"}12"}14"}16"}
+Pizza Sauce}3.0}4.2}6.0}8.0}
+Pizza Cheese}3.5}5.0}7.0}9.0}
+Pepperoni }12}18}24}38}
+Mushroom}1.0}1.5}2.0}2.5}
+Sausage} }
+Onion}0.5}1.0}1.5}2.0}
+Green Peppers= }
+
+Philly Cheese Steak=
+10"}12"}14"}16"}
+American}4.0}6.0}7.0}9.0}
+Philly Steak}2.0}3.0}4.0}5.0}
+Onion}0.5}1.0}1.5}2.0}
+Green Peppers= }
+Mushroom}1.0}1.5}2.0}2.5}
+Provolone}2.5}3.5}4.7}6.0}
+
+Pacific Vegie =
+10"}12"}14"}16"}
+Pizza Sauce }1.5}3.0}4.0}4.5}
+Pizza Cheese }1.0}2.5}3.5}4.5}
+Spinach}1.0}1.0}1.5}2.0}
+Provolone }2.5}3.5}4.7}6.0}
+Feta}1.0}1.5}2.0}2.5}
+Onion}0.5}1.0}1.5}2.0}
+Green Peppers}0.5}1.0}1.5}2.0}
+Mushrooms}1.0}1.5}2.0}2.5}
+Black Olives }0.2}0.5}0.7}1.0}
+Tomato}0.5}1.0}1.5}2.0}
+Garlic herb }0.02}0.03}0.04}0.05}
+
+Extravaganzza=
+10"}12"}14"}16"}
+Pizza Sauce }1.5}3.0}4.0}4.5}
+Pizza Cheese }1.0}2.5}3.5}4.5}
+Pepperoni}12}18}24}38}
+Ham}12}18}24}38}
+Onion}0.5}1.0}1.5}2.0}
+Green Peppers}0.5}1.0}1.5}2.0}
+Mushroom}1.0}1.5}2.0}2.5}
+Black Olives}0.5}1.0}1.5}2.0}
+Sausage}1.0}1.5}2.0}2.5}
+Beef}1.0}1.5}2.0}2.5}
+Pizza Cheese }1.7}2.5}3.5}4.5}
+
+Buffalo Chicken Sandwich=
+Hot Buffalo Sauce}0.7}
+Cheddar Blend}1.0}
+Blue Cheese}1.0}
+Pizza Cheese}0.5}
+Chicken}2.5}
+Onion}1.0}
+Provolone}1}
+
+Chicken Habanero sandwich=
+Pineapple}0.7}
+Jalapeno}0.5}
+Cheddar Blend}1.5}
+Pizza Cheese}0.7}
+Chicken}2.5}
+Provolone}1}
+
+Philly Cheese steak sandwich=
+Toppings}Portions}
+Provolone}1}
+American Cheese}2}
+Philly steak}2.5}
+Onion}0.5}
+Green Peppers}0.7}
+Mushroom}1}
+Provolone}1}
+
+Veggie sandwich=
+Toppings}Portions}
+Feta }1.0}
+Spinach}0.5}
+Provolone}1}
+American Cheese}2}
+Onion}1.0}
+Green Peppers}0.7}
+Banana Peppers}0.2}
+Diced Tomato}1.0}
+Provolone}1}
+
