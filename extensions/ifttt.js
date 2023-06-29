@@ -8,6 +8,7 @@ class IFTTTExtension {
     return {
       id: 'ifttt',
       name: 'IFTTT Extension',
+      docsURI: 'https://kindpump.github.io/IFTTTDOCS.html',
       color1: '#333333', // lighter black color
       blocks: [
         {
