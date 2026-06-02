@@ -3,7 +3,7 @@ getInfo() {
     return {
       id: 'MoleculeGenerator',
       name: 'MoleculeGenerator',
-      docsURI: 'https://kypo.org/turbowarpdocs1',
+      docsURI: "https://kypo.org/turbowarpdocs1",
       blocks: [
         {
           opcode: 'hello',
